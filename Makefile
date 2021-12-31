@@ -31,11 +31,12 @@ backup: ## Backup arch linux packages
 
 yay:
 	# Install the yay AUR helper
-	$(PACMAN) git
-	git clone https://aur.archlinux.org/yay.git
-	pushd $(PWD)/yay/ ; \
-	makepkg -si --noconfirm; \
-	popd ; rm -rf $(PWD)/yay
+	$(PACMAN) git ; \
+	git clone https://aur.archlinux.org/yay.git ; \
+	pushd $(PWD)/yay ; \
+	makepkg -si --noconfirm ; \
+	popd ; \
+	rm -rf $(PWD)/yay
 
 install: ## Install arch linux packages using pacman
 	$(PACMAN) - < $(PWD)/archlinux/pacmanlist
