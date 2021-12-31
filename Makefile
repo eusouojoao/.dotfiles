@@ -1,6 +1,6 @@
 MKDIR=mkdir -p
-PACMAN=sudo pacman --no-confirm --needed -S
-YAY=yay --no-confirm --needed -S
+PACMAN=sudo pacman --noconfirm --needed -S
+YAY=yay --noconfirm --needed -S
 
 .DEFAULT_GOAL := help
 .PHONY: all allinstall install aur yay installdots update backup help
@@ -33,10 +33,9 @@ yay:
 	# Install the yay AUR helper
 	$(PACMAN) git
 	git clone https://aur.archlinux.org/yay.git
-	pushd yay
-	makepkg -si --noconfirm
-	popd
-	rm -rf yay
+	pushd $(PWD)/yay/ ; \
+	makepkg -si --noconfirm; \
+	popd ; rm -rf $(PWD)/yay
 
 install: ## Install arch linux packages using pacman
 	$(PACMAN) - < $(PWD)/archlinux/pacmanlist
