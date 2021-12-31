@@ -1,0 +1,4 @@
+nvim/.config/nvim/plugged/
+nvim/.config/nvim/undodir/
+mpd/.config/mpd/mpdstate
+mpd/.config/mpd/mpd.log
