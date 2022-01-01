@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo localectl set-x11-keymap gb
+
 # /* services */
 sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth
