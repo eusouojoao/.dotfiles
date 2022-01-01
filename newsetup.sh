@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo usermod -aG libvirt joao
 sudo localectl set-x11-keymap gb
 
 # /* services */
