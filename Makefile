@@ -1,14 +1,14 @@
 #yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy
- # GNU Make															#
- #																	#
- # Useful documentation:											#
- # - https://www.gnu.org/software/make/manual/html_node/index.html 	#
- # - https://clarkgrubb.com/makefile-style-guide					#
+ # GNU Make_________________________________________________________#
+ #__________________________________________________________________#
+ # Useful documentation:____________________________________________#
+ # - https://www.gnu.org/software/make/manual/html_node/index.html__#
+ # - https://clarkgrubb.com/makefile-style-guide____________________#
 #yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy
-MKDIR 			:= mkdir -p
-PACMAN 			:= sudo pacman --noconfirm --needed -S
-YAY 			:= yay --noconfirm --needed -S
-.DEFAULT_GOAL 	:= help
+MKDIR := mkdir -p
+PACMAN := sudo pacman --noconfirm --needed -S
+YAY := yay --noconfirm --needed -S
+.DEFAULT_GOAL := help
 
 .PHONY: help
 help:
@@ -23,9 +23,9 @@ all: start newsetup allinstall update backup installdots
 .PHONY: start
 start:
 	# Refreshes the mirrorlist
-	$(PACMAN) reflector
 	sudo timedatectl set-ntp true
 	sudo hwclock --systohc
+	$(PACMAN) reflector
 	sudo reflector -c Portugal,Germany,Spain,England -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 	sudo pacman -Syy
 
