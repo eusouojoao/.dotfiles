@@ -1,55 +1,90 @@
-MKDIR=mkdir -p
-PACMAN=sudo pacman --noconfirm --needed -S
-YAY=yay --noconfirm --needed -S
+#yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy
+ # GNU Make															#
+ #																	#
+ # Useful documentation:											#
+ # - https://www.gnu.org/software/make/manual/html_node/index.html 	#
+ # - https://clarkgrubb.com/makefile-style-guide					#
+#yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy
+MKDIR 			:= mkdir -p
+PACMAN 			:= sudo pacman --noconfirm --needed -S
+YAY 			:= yay --noconfirm --needed -S
+.DEFAULT_GOAL 	:= help
 
-.DEFAULT_GOAL := help
-.PHONY: all allinstall install aur yay installdots update backup help
-
+.PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-all: ## Install the AUR helper, all packages and dotfiles
-all: allinstall update backup installdots
+.PHONY: all
+all: ## Intended for a new, fresh, install. Installs and sets up everything
+all: start newsetup allinstall update backup installdots
 
+.PHONY: start
+start:
+	# Refreshes the mirrorlist
+	$(PACMAN) reflector
+	sudo timedatectl set-ntp true
+	sudo hwclock --systohc
+	sudo reflector -c Portugal,Germany,Spain,England -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+	sudo pacman -Syy
+
+.PHONY: pacmancolors
 pacmancolors: 
-	# Make pacman and yay colorful and adds eye candy on the progress bar.
+	# Make pacman and yay colorful and adds eye candy to the progress bar.
 	sudo sed -i "s/^#Color/Color/" /etc/pacman.conf
 	sudo sed -i "/^#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 	sudo sed -i "s/^#VerbosePkgLists/VerbosePkgLists/" /etc/pacman.conf
 
+.PHONY: multilib
 multilib:
 	# Enable the multilib repository
 	sudo sed -i "/^#\[multilib\]/a Include\ =\ \/etc\/pacman\.d\/mirrorlist" /etc/pacman.conf
 	sudo sed -i "s/^#\[multilib\]/\[multilib\]/" /etc/pacman.conf
 
+.PHONY: backup
 backup: ## Backup arch linux packages
-	$(MKDIR) ${PWD}/archlinux
-	pacman -Qnq > ${PWD}/archlinux/pacmanlist
-	pacman -Qqem > ${PWD}/archlinux/aurlist
+	$(MKDIR) $(PWD)/archlinux/
+	pacman -Qnq > $(PWD)/archlinux/pacmanlist
+	pacman -Qqem > $(PWD)/archlinux/aurlist
 
+.PHONY: yay
 yay:
 	# Install the yay AUR helper
-	$(PACMAN) git ; \
-	git clone https://aur.archlinux.org/yay.git ; \
-	pushd $(PWD)/yay ; \
+	$(PACMAN) git
+	git clone https://aur.archlinux.org/yay.git
+	pushd $(PWD)/yay/ ; \
 	makepkg -si --noconfirm ; \
 	popd ; \
-	rm -rf $(PWD)/yay
+	rm -rf $(PWD)/yay/
 
-install: ## Install arch linux packages using pacman
+.PHONY: pac
+pac: ## Install arch linux packages using pacman
 	$(PACMAN) - < $(PWD)/archlinux/pacmanlist
 
+.PHONY: aur
 aur: ## Install arch linux AUR packages using yay
 	$(YAY) - < $(PWD)/archlinux/aurlist
 
-update: ## Update arch linux packages and save packages cache 3 generations
+.PHONY: update
+update: ## Update arch linux packages and save packages 3 cache generations
 	yay -Syu ; paccache -ruk0
 
+.PHONY: installdots
 installdots: ## Symlink dotfiles
-	chmod +x $(PWD)/install.sh $(PWD)/clean.sh
-	$(PWD)/clean.sh
+	chmod +x $(PWD)/install.sh
 	$(PWD)/install.sh
 
-allinstall: yay pacmancolors multilib install aur
+.PHONY: removedots
+removedots: ## Remove dotfiles' symlinks
+	chmod +x $(PWD)/clean.sh
+	$(PWD)/clean.sh
+
+.PHONY: newsetup
+newsetup:
+	# Enables services, etc. Only useful on a fresh install
+	chmod +x newsetup.sh
+	$(PWD)/newsetup.sh
+
+.PHONY: allinstall
+allinstall: yay pacmancolors multilib pac aur
