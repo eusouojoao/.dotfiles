@@ -67,7 +67,7 @@ aur: ## Install arch linux AUR packages using yay
 	$(YAY) - < $(PWD)/archlinux/aurlist
 
 .PHONY: update
-update: ## Update arch linux packages and save packages 3 cache generations
+update: ## Update arch linux packages and save packages cache 3 generations
 	yay -Syu ; paccache -ruk0
 
 .PHONY: installdots
