@@ -18,7 +18,7 @@ help:
 
 .PHONY: all
 all: ## Intended for a new, fresh, install. Installs and sets up everything
-all: start newsetup allinstall update backup installdots
+all: start allinstall update backup newsetup installdots
 
 .PHONY: start
 start:
