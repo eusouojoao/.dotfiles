@@ -12,7 +12,7 @@ eval "$(dircolors -b /etc/DIR_COLORS)"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export DOTFILES=$HOME/.dotfiles
-export STOW_FOLDERS=alacritty,dunst,i3,mpd,ncmpcpp,nvim,picom,polybar,redshift,rofi,rofimoji,X,zathura,zsh
+export STOW_FOLDERS=alacritty,dunst,i3,mpd,mpv,ncmpcpp,nvim,picom,polybar,redshift,rofi,rofimoji,X,zathura,zsh
 
 # User configuration
 # History in cache directory:

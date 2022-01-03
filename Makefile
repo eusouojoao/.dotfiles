@@ -5,6 +5,7 @@
  # - https://www.gnu.org/software/make/manual/html_node/index.html__#
  # - https://clarkgrubb.com/makefile-style-guide____________________#
 #yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy
+
 MKDIR := mkdir -p
 PACMAN := sudo pacman --noconfirm --needed -S
 YAY := yay --noconfirm --needed -S
