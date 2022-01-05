@@ -838,6 +838,7 @@ pipewire-media-session
 pipewire-pulse
 pixman
 pkgconf
+playerctl
 polkit
 polkit-qt5
 poppler
