@@ -1,0 +1,26 @@
+# Aliases
+export COLOR_MODE='--color=auto'
+alias grep=' grep ${COLOR_MODE}'
+alias egrep='egrep ${COLOR_MODE}'
+alias fgrep='fgrep ${COLOR_MODE}'
+alias zgrep='zgrep ${COLOR_MODE}'
+alias ls='ls ${COLOR_MODE}'
+alias ll='ls -lh'
+alias l='ls -lAh'
+alias tree='tree -C'
+alias less='less -R'
+alias s="sudo pacman -S"
+alias syu="sudo pacman -Syu"
+alias up="yay -Syu ; paccache -ruk0"
+alias rm="trash -v"
+alias cp="cp -v"
+alias z="zathura --fork"
+alias smem-ram="smem -t -k -c pss -P"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias se="sudo -e"
+alias la="exa -la --icons"
+alias lt="exa --tree --icons"
+alias yt-dlp-best="yt-dlp -q -i -c -f 'bestvideo,bestaudio' -o '%(title)s.%(ext)s'"
+alias yt-dlp-audio="yt-dlp --split-chapters -q -i -c -f 'novideo,bestaudio' -o '%(title)s.%(ext)s'"
