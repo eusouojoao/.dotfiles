@@ -6,6 +6,7 @@ jstest-gtk-git
 latexrun-git
 lightdm-mini-greeter
 logiops-git
+mpd-mpris
 neovim-nightly-bin
 nerd-fonts-source-code-pro
 noto-color-emoji-fontconfig
@@ -14,6 +15,7 @@ pokemon-colorscripts-git
 polybar
 protonup-git
 qt5-styleplugins
+solaar-git
 sysfetch-git
 todo
 xwinwrap-git
