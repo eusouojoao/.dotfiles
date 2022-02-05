@@ -24,3 +24,5 @@ alias la="exa -la --icons"
 alias lt="exa --tree --icons"
 alias yt-dlp-best="yt-dlp -q -i -c -f 'bestvideo,bestaudio' -o '%(title)s.%(ext)s'"
 alias yt-dlp-audio="yt-dlp --split-chapters -q -i -c -f 'novideo,bestaudio' -o '%(title)s.%(ext)s'"
+alias xclip="xclip -selection c"
+

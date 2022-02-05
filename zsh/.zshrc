@@ -8,8 +8,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+eval "$(pyenv init -)"
 eval "$(dircolors -b /etc/DIR_COLORS)"
-export PATH=$HOME//Mathematica/bin:$HOME/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/Mathematica/bin:$HOME/bin:$HOME/.local/bin:$PATH
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export DOTFILES=$HOME/.dotfiles
 export STOW_FOLDERS=alacritty,dunst,i3,mpd,mpv,ncmpcpp,nvim,picom,polybar,redshift,rofi,rofimoji,X,zathura,zsh
