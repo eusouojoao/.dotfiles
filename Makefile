@@ -1,11 +1,3 @@
-#yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy#
- # GNU Make _________________________________________________________#
- #___________________________________________________________________#
- # Useful documentation:_____________________________________________#
- #_> https://www.gnu.org/software/make/manual/html_node/index.html __#
- #_> https://clarkgrubb.com/makefile-style-guide ____________________#
-#yy~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yy#
-
 MKDIR := mkdir -p
 PACMAN := sudo pacman --noconfirm --needed -S
 YAY := yay --noconfirm --needed -S
@@ -27,7 +19,7 @@ start:
 	sudo timedatectl set-ntp true
 	sudo hwclock --systohc
 	$(PACMAN) reflector
-	sudo reflector -c Portugal,Germany,Spain,England -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+	#sudo reflector -c Portugal,Germany,Spain,England -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 	sudo pacman -Syy
 
 .PHONY: pacmancolors

@@ -1,1 +1,23 @@
+#!/bin/bash
+
 export QT_QPA_PLATFORMTHEME=gtk2
+
+if [ -x "$(command -v nm-applet)" ]; then
+    nm-applet &
+fi
+
+if [ -x "$(command -v dunst)" ]; then
+    dunst &
+fi
+
+if [ -x "$(command -v feh)" ]; then
+    feh --bg-scale $HOME/Pictures/background/* &
+fi
+
+if [ -x "$(command -v redshift)" ]; then
+    redshift &
+fi
+
+if [ -x "$(command -v picom)" ]; then
+    picom --experimental-backends -CGb &
+fi

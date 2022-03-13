@@ -35,3 +35,8 @@ let g:onedark_termcolors=256
 let g:onedark_style = 'darker' 
 colorscheme onedark
 "hi Normal guibg=NONE ctermbg=NONE "-> Allows nvim's bg to be transparent
+
+" R language
+let g:LanguageClient_serverCommands = {
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ }

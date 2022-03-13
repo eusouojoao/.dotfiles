@@ -1,5 +1,8 @@
 #~#~#~#~#~#~#~#
 # Sane defaults
+#
+font "noto sans 7"
+
 set window-title-basename "true"
 set selection-clipboard "clipboard"
 
@@ -19,8 +22,7 @@ set recolor "true"
 map p print
 
 #~#~#~#~#~#~#~#
-# Dracula theme
-
+# Theme
 set recolor-lightcolor          "#282a36" # Background
 set recolor-darkcolor           "#f8f8f2" # Foreground
 
