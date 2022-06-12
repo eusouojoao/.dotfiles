@@ -30,9 +30,16 @@ syntax on
 set termguicolors
 set cursorline
 "ONE DARK THEME
-let g:onedark_darker_diagnostics = 0
 let g:onedark_termcolors=256
-let g:onedark_style = 'darker' 
+let g:onedark_config = {
+  \ 'style': 'darker',
+  \ 'toggle_style_key': '<leader>ts',
+  \ 'ending_tildes': v:true,
+  \ 'diagnostics': {
+    \ 'darker': v:false,
+    \ 'background': v:false,
+  \ },
+\ }
 colorscheme onedark
 "hi Normal guibg=NONE ctermbg=NONE "-> Allows nvim's bg to be transparent
 
